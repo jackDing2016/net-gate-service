@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: net-gate-service
+  cloud:
+    gateway:
+      routes:
+        - id: exchange-module
+#          uri: http://localhost:8000/
+          uri: lb://currency-exchange-service
+          predicates:
+            - Path=/currency-exchange-service/**
+
+
+server:
+  port: 8200
+eureka:
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/
